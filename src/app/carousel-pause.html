@@ -1,0 +1,92 @@
+<style type="text/css">
+  .fill {
+    /* filter: brightness(30%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+  }
+  .fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  ::ng-deep .carousel-control-next:hover,
+  ::ng-deep .carousel-control-prev:hover {
+    background: rgba(210, 212, 223, 0.4);
+  }
+  .fill::before {
+    content: ' ';
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000080;
+  }
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    color: white;
+    z-index: 2;
+  }
+
+  .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    color: white;
+    z-index: 2;
+  }
+
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    color: white;
+    z-index: 2;
+  }
+
+  .bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    color: white;
+    z-index: 2;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 2;
+  }
+</style>
+<ngb-carousel
+  #carousel
+  [interval]="10000"
+  [pauseOnHover]="pauseOnHover"
+  [pauseOnFocus]="pauseOnFocus"
+  (slide)="onSlide($event)"
+>
+  <ng-template ngbSlide *ngFor="let img of images; index as i">
+    <!-- <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer"> -->
+    <div class="picsum-img-wrapper fill">
+      <img [src]="img" alt="My image {{i + 1}} description" />
+      <div class="bottom-left">Bottom Left</div>
+      <div class="top-left">Top Left</div>
+      <div class="top-right">Top Right</div>
+      <div class="bottom-right">Bottom Right</div>
+      <div class="centered">Centered</div>
+    </div>
+    <!-- </a> -->
+  </ng-template>
+</ngb-carousel>
+
+<hr />
