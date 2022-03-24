@@ -1,10 +1,18 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCarousel,
+  NgbSlideEvent,
+  NgbSlideEventSource,
+} from '@ng-bootstrap/ng-bootstrap';
 
-
-@Component({selector: 'ngbd-carousel-pause', templateUrl: './carousel-pause.html'})
+@Component({
+  selector: 'ngbd-carousel-pause',
+  templateUrl: './carousel-pause.html',
+})
 export class NgbdCarouselPause {
-  images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  images = [62, 83, 466, 965, 982, 1043].map(
+    (n) => `https://picsum.photos/id/${n}/900/500`
+  );
 
   paused = false;
   unpauseOnArrow = false;
@@ -12,7 +20,7 @@ export class NgbdCarouselPause {
   pauseOnHover = true;
   pauseOnFocus = true;
 
-  @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
+  @ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
   togglePaused() {
     if (this.paused) {
@@ -24,11 +32,19 @@ export class NgbdCarouselPause {
   }
 
   onSlide(slideEvent: NgbSlideEvent) {
-    if (this.unpauseOnArrow && slideEvent.paused &&
-      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)) {
+    if (
+      this.unpauseOnArrow &&
+      slideEvent.paused &&
+      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT ||
+        slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)
+    ) {
       this.togglePaused();
     }
-    if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
+    if (
+      this.pauseOnIndicator &&
+      !slideEvent.paused &&
+      slideEvent.source === NgbSlideEventSource.INDICATOR
+    ) {
       this.togglePaused();
     }
   }
